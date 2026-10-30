@@ -1,0 +1,55 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: pjstrid
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: athleteApi
+
+provider:
+  name: aws
+  runtime: nodejs24.x
+  architecture: arm64
+  region: eu-north-1
+  iam:
+    role: ${file(./config.yml):role}
+
+functions:
+  getAllAthletes:
+    handler: functions/getAllAthletes/index.handler
+    events:
+      - httpApi:
+          path: /api/athletes
+          method: GET
+
+  getAthleteById:
+    handler: functions/getAthleteById/index.handler
+    events:
+      - httpApi:
+          path: /api/athletes/{id}
+          method: GET
+
+  addAthlete:
+    handler: functions/addAthlete/index.handler
+    events:
+      - httpApi:
+          path: /api/athletes
+          method: POST
+
+  updateAthlete:
+    handler: functions/updateAthlete/index.handler
+    events:
+      - httpApi:
+          path: /api/athletes/{id}
+          method: PUT
+
+  editAthlete:
+    handler: functions/editAthlete/index.handler
+    events:
+      - httpApi:
+          path: /api/athletes/{id}
+          method: PATCH
+
+  deleteAthlete:
+    handler: functions/deleteAthlete/index.handler
+    events:
+      - httpApi:
+          path: /api/athletes/{id}
+          method: DELETE
