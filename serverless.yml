@@ -53,3 +53,21 @@ functions:
       - httpApi:
           path: /api/athletes/{id}
           method: DELETE
+
+# resources: 
+#   Resources:
+#     AthleteDB:
+#       Type: AWS::DynamoDB::Table
+#       Properties:
+#         TableName : athlete-db
+#         BillingMode : PAY_PER_REQUEST
+#         AttributeDefinitions:
+#           - AttributeName: type
+#             AttributeType: S
+#           - AttributeName: id
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: type
+#             KeyType: HASH
+#           - AttributeName: id
+#             KeyType: RANGE
